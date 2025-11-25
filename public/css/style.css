@@ -1,14 +1,16 @@
+@import url("reset.css");
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 body {
-    font-size: 12pt;
+    font-family: 'Cormorant', sans-serif;
+    font-size: 14pt;
 }
 
 p {
-    color: red;
+    color: white;
 }
 
 h1 {
-    font-family: 'Agbalumo';
+    font-family: 'Cormorant', sans-serif;
     font-size: 36pt;
 }
 main, header, footer, nav ul {
@@ -40,6 +42,14 @@ header h1 {
     margin: 0 auto;
     text-align: center;
 }
+h3 {
+    margin:40px;
+    text-align: center;
+
+}
+img {
+    margin:10px;
+}
 
 nav ul {
     display: grid;
@@ -61,4 +71,28 @@ nav li {
 .Master {
     color: green;
     font-weight: bold;
+}
+.allergies {
+   color: #ff5500;
+}
+
+
+#section1 {
+    background-color: black;
+    color: white;
+    margin:50px;
+}
+
+#section2 {
+    margin:50px;
+}
+
+botton {
+     text-align: center;
+     margin: 10px
+}
+
+button:hover {
+   background-color:red;
+   cursor:pointer;
 }
