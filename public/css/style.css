@@ -3,6 +3,7 @@
 body {
     font-family: 'Cormorant', sans-serif;
     font-size: 14pt;
+    background-color:powderblue;
 }
 
 p {
@@ -19,6 +20,7 @@ main, header, footer, nav ul {
 }
 main {
     background-color: bisque;
+    text-align: center;
 }
 
 /* nav ul li {
@@ -56,7 +58,9 @@ h3 {
 
 }
 img {
-    margin:10px;
+    margin:1px;
+    width: 100%;
+    height: auto;
 }
 
 nav ul {
@@ -82,8 +86,27 @@ nav li {
 }
 .allergies {
    color: #ff5500;
+   font-weight: bold;
 }
 
+.burgers {
+    display: grid;
+    gap: 10px; /* modern `gap` for row/column spacing */
+    /* responsive columns: create as many columns as fit with a minimum card width 
+    repeat(auto-fit, minmax(220px, 1fr));*/
+    grid-template-columns: 33% 33% 33%;
+    box-sizing: border-box;
+}
+
+/* Ensure images scale to fit their grid cell and keep good aspect */
+.burgers img {
+    width: 100%;
+    height: auto;      /* maintain aspect ratio */
+    display: block;    /* remove inline image spacing */
+    margin: 0;         /* override global img margin so cards align cleanly */
+    max-height: 260px; /* optional cap so giant images don't take over the layout */
+    object-fit: cover; /* crop nicely when max-height applies */
+}
 
 #section1 {
     background-color: black;
