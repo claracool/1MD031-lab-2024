@@ -1,21 +1,21 @@
 [{
-    "name": "Veggie Bliss", 
+    "name": "Chiliburger", 
     "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
+    "url": "/Users/claramarten/Documents/Interface/1MD031-lab-2024/public/img/chiliburger.jpg",
     "lactose": false, 
     "gluten": false
 },
 {
-    "name": "Veggie Bliss", 
+    "name": "Hotburger", 
     "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
+    "url": "/Users/claramarten/Documents/Interface/1MD031-lab-2024/public/img/hotburger.jpg",
     "lactose": false, 
     "gluten": false
 },
 {
-    "name": "Veggie Bliss", 
+    "name": "Tastyburger", 
     "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
+    "url": "/Users/claramarten/Documents/Interface/1MD031-lab-2024/public/img/tastyburger.jpg",
     "lactose": false, 
     "gluten": false
 }]

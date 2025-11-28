@@ -7,52 +7,14 @@
         <section id="section1"> 
             <h1>Select a Burger</h1>
                 <p>This is where you select a burger</p>
-            <div class="burgers">
-             <div class="chiliburger">
-                <h3>Chiliburgare</h3>
-            
-                <img src="/img/chiliburger.jpg" alt="Chiliburgare" title="Our spicy chiliburger">
-            <section class="allergies">
-                <p> Allergies <span id="chiliburger-allergies">
-                    <ul>
-                        <li>Tomato</li>
-                        <li>Lactose</li>
-                        <li>Gluten</li>
-                    </ul>
-                </span>
-                </p>
-            </section>
-            </div>
-             <div class="Tastyburger">
-                <h3>The Tastyburger</h3>
-                <img src="/img/tastyburger.jpg" alt="Tastyburger" title="Our tasty burger">
-               <section class="allergies">
-                  <p> Allergies <span id="Tastyburger-allergies">
-                    <ul>
-                        <li>Tomato</li>
-                        <li>Lactose</li>
-                        <li>Gluten</li>
-                    </ul>
-                </span>
-                </p>
-            </section>
-            </div>
-             <div class="Hotburger">
-        
-                <h3>The Hotburger</h3>
-                <img src="/img/hotburger.jpg" alt="Hotburger" title="Our hot burger">
-                <section class="allergies">
-                <p> Allergies <span id="Hotburger-allergies">
-                    <ul>
-                        <li>Tomato</li>
-                        <li>Lactose</li>
-                        <li>Gluten</li>
-                    </ul>
-                    </span>
-                    </p>
-                </section>
-                </div>
-            </div>
+                        <div class="burgers">
+                            <!-- render the burgers array dynamically using the OneBurger component -->
+                            <Burger
+                                v-for="burger in burgers"
+                                :key="burger.name"
+                                :burger="burger"
+                            />
+                        </div>
         </section>
         <section id="section2"> 
             <h2>Costumer Information</h2>
@@ -111,6 +73,8 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
+// import the static menu JSON and use it as the source of truth for the menu
+import menu from '../assets/menu.json'
 
 const socket = io("localhost:3000");
 

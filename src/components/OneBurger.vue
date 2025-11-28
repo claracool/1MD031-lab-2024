@@ -1,35 +1,56 @@
 <template>
-  <div>
-    {{ burger.name }} {{ burger.kCal }}
-  </div>
+  <article class="one-burger">
+    <img
+      class="burger-image"
+      :src="burger.url || burger.img || '/img/chiliburger.jpg'"
+      :alt="burger.name || 'burger'"
+    />
 
-  <div class="burgers">
-             <div class="chiliburger">
-                <h3>Chiliburgare</h3>
-                <img src="/img/chiliburger.jpg" alt="Chiliburgare" title="Our spicy chiliburger">
-            <section class="allergies">
-                <p> Allergies <span id="chiliburger-allergies">
-                    <ul>
-                        <li>Tomato</li>
-                        <li>Lactose</li>
-                        <li>Gluten</li>
-                    </ul>
-                </span>
-                </p>
-            </section>
-            </div>
+    <div class="burger-info">
+      <h4 class="burger-name">{{ burger.name }}</h4>
+      <div class="burger-meta">kCal: <strong>{{ burger.kCal ?? burger.kcal ?? '—' }}</strong></div>
+
+      <div class="burger-allergy">
+        <span v-if="burger.gluten" class="badge">Contains gluten</span>
+        <span v-else class="badge muted">Gluten-free</span>
+
+        <span v-if="burger.lactose" class="badge">Contains lactose</span>
+        <span v-else class="badge muted">Lactose-free</span>
+      </div>
+    </div>
+  </article>
 </template>
+
+
 
 <script>
 export default {
   name: 'OneBurger',
   props: {
-    burger: Object
+    burger: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
 
+
+<style scoped>
+.one-burger {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+.burger-image { width: 100%; height: 160px; object-fit: cover; display:block }
+.burger-info { padding: 0.75rem; }
+.burger-name { margin: 0 0 0.25rem 0; font-size: 1.05rem }
+.burger-meta { color: #666; font-size: .9rem }
+.burger-allergy { margin-top: 0.5rem; display:flex; gap:.5rem; flex-wrap:wrap }
+.badge { background:#ffefeb; color:#b0421f; padding:.25rem .5rem; border-radius:4px; font-size:.75rem }
+.badge.muted { background:#f3f3f3; color:#666 }
 </style>
