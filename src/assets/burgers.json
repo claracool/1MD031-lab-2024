@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Chiliburger",
+        "kCal": 500,
+        "url": "img/chiliburger.jpg",
+        "lactose": false,
+        "gluten": false,
+        "amountOrdered": 0
+    },
+    {
+        "name": "Hotburger",
+        "kCal": 500,
+        "url": "img/hotburger.jpg",
+        "lactose": false,
+        "gluten": false,
+        "amountOrdered": 0
+    },
+    {
+        "name": "Tastyburger",
+        "kCal": 500,
+        "url": "img/tastyburger.jpg",
+        "lactose": false,
+        "gluten": false,
+        "amountOrdered": 0
+    }
+]
