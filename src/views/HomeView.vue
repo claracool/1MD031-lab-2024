@@ -48,22 +48,17 @@
                     <option>Cash</option>
                 </select>
             </p>
-            <hr>
-            <div id="map" class="map" @click="AddOrder">
+            <div id="map-container">
                 Select delivery location:
-                
-                <div class="dot" v-bind:style="{
-                    left: details.x + 'px',
-                    top: details.y + 'px'
-                }">
-                    Target
+                <div id="map" class="map" v-on:click="setLocation">
+                    <div class="target" :style="{ left: location.x + 'px', top: location.y + 'px' }"></div>
                 </div>
             </div>
         </section>
-        <!-- <button v-on:click="SubmitOrder(key)" type="submit"> -->
-        <!-- <img src="/img/botton.jpg"> -->
-        <!-- Send Info
-        </button> -->
+        <button v-on:click="addOrder()" type="submit">
+        <img src="/img/botton.jpg"> 
+         Send Info
+        </button>
     </main>
     <hr>
     <footer>
@@ -132,69 +127,88 @@ export default {
         getOrderNumber: function () {
             return Math.floor(Math.random() * 100000);
         },
-        AddOrder: function (event) {
+        addOrder: function () {
             console.log("Order submitted by: " + this.name);
             console.log("Email: " + this.email);
-            console.log("Adress: " + this.adress);
+            console.log("Adress: " + this.location.x + ", " + this.location.y);
             console.log("Gender: " + this.gender);
             console.log("Payment method: " + this.payment);
             console.log("Ordered burgers:" + this.burgers);
 
+
+
+            socket.emit("addOrder", {
+                orderId: this.getOrderNumber(),
+                details: {
+                    x: this.location.x,
+                    y: this.location.y,
+                    name: this.name,
+                    email: this.email,
+                    gender: this.gender,
+                    payment: this.payment
+
+                },
+                
+                orderItems: this.burgers.filter(burger => burger.amountOrdered > 0).reduce((items, burger) => {
+                    items[burger.name] = burger.amountOrdered;
+                    return items;
+                }, {})
+            });
+
+            // Place dot at clicked location
+            //this.location.x = event.clientX - 10 - offset.x;
+            //this.location.y = even
+        },
+        setLocation: function (event) {
             var offset = {
                 x: event.currentTarget.getBoundingClientRect().left,
                 y: event.currentTarget.getBoundingClientRect().top
             };
 
-            // Place dot at clicked location
-            this.location.x = event.clientX - 10 - offset.x;
-            this.location.y = event.clientY - 10 - offset.y;
+            var x = event.clientX - 10 - offset.x;
+            var y = event.clientY - 10 - offset.y;
 
-            socket.emit("addOrder", {
-                orderId: this.getOrderNumber(),
-                details: {
-                    x: event.clientX - 10 - offset.x,
-                    y: event.clientY - 10 - offset.y
-
-                },
-                orderItems: ["beans", "Curry"]
-            }
-            );
+            this.location.x = x;
+            this.location.y = y;
+            console.log(this.location)
         }
     }
 }
+
+
 </script>
 
 <style>
-.map {
-    width: 600px;
-    height: 400px;
-    background-image: url("/img/polacks.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
-    /* needed for absolute child positioning */
+#map-container {
+    width: 500px;
+    height: 300px;
     overflow: scroll;
-    /* optional if you want to scroll */
+    border: 1px solid #aaa;
 }
 
-.dot {
-    position: absolute;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    width:20px;
-    height:20px;
-    text-align: center;
-  }
+#map {
+    width: 1200px;
+    /* större yta än containern */
+    height: 1000px;
+    /* annars ingen scroll */
+    background-image: url("/img/polacks.jpg");
+    background-size: cover;
+    /* eller contain */
+    background-repeat: no-repeat;
+    background-position: top left;
+    position: relative;
+    /* nödvändigt för .target */
+}
 
 @import url("reset.css");
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 
-.map img {
-    width: 1200px;
-    height: auto;
-    display: block;
+.target {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: black;
+
 }
 
 body {
